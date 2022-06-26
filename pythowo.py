@@ -37,19 +37,19 @@ class Error:
 
 class IllegalCharError(Error):
   def __init__(self, pos_start, pos_end, details):
-    super().__init__(pos_start, pos_end, 'Illegal Character', details)
+    super().__init__(pos_start, pos_end, 'owo, whats this? Illegal Character? Oh nwo! ', details)
 
 class ExpectedCharError(Error):
   def __init__(self, pos_start, pos_end, details):
-    super().__init__(pos_start, pos_end, 'Expected Character', details)
+    super().__init__(pos_start, pos_end, 'owo, whats this? Expected Character? Oh nwo! ', details)
 
 class InvalidSyntaxError(Error):
   def __init__(self, pos_start, pos_end, details=''):
-    super().__init__(pos_start, pos_end, 'Invalid Syntax', details)
+    super().__init__(pos_start, pos_end, 'owo, whats this? Invalid Syntax? Oh nwo! ', details)
 
 class RTError(Error):
   def __init__(self, pos_start, pos_end, details, context):
-    super().__init__(pos_start, pos_end, 'Runtime Error', details)
+    super().__init__(pos_start, pos_end, 'owo, whats this? Runtime Error? Oh nwo! ', details)
     self.context = context
 
   def as_string(self):
@@ -1692,11 +1692,6 @@ class BuiltInFunction(BaseFunction):
 
   #####################################
 
-  def execute_owo(self, exec_ctx):
-    print(str(exec_ctx.symbol_table.get('value')))
-    return "owo"
-  execute_owo.arg_names = ['value']
-
   def execute_print(self, exec_ctx):
     print(str(exec_ctx.symbol_table.get('value')))
     return RTResult().success(Number.null)
@@ -1875,8 +1870,6 @@ BuiltInFunction.pop         = BuiltInFunction("pop")
 BuiltInFunction.extend      = BuiltInFunction("extend")
 BuiltInFunction.len					= BuiltInFunction("len")
 BuiltInFunction.run					= BuiltInFunction("run")
-BuiltInFunction.owo					= BuiltInFunction("owo")
-BuiltInFunction.uwu					= BuiltInFunction("uwu")
 
 
 #######################################
@@ -2189,8 +2182,6 @@ global_symbol_table.set("pwp", BuiltInFunction.pop)
 global_symbol_table.set("extwend", BuiltInFunction.extend)
 global_symbol_table.set("lwen", BuiltInFunction.len)
 global_symbol_table.set("rwun", BuiltInFunction.run)
-global_symbol_table.set("owo", BuiltInFunction.owo)
-global_symbol_table.set("uwu", BuiltInFunction.uwu)
 
 def run(fn, text):
   # Generate tokens
