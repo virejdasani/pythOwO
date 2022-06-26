@@ -1,0 +1,23 @@
+# Variables
+pwease baka = 100
+pwease awoo = "two"
+pwease chan = 25
+pwease baka = baka + 1
+pwease awoo = 501
+pwease chan = chan * 2
+
+pwint(awoo)
+pwint(baka)
+pwint(chan)
+
+
+# Conditionals
+IF awoo == 502 THWEN pwease chan = "awoo is 502!" EWIF awoo == 501 THWEN pwease chan = "awoo is 501!" EWSE pwease chan = "awoo is 500!"
+
+pwint(chan)
+
+
+# Loop
+FOR i = 0 TO 5 THWEN
+	pwint("UwU")
+END
