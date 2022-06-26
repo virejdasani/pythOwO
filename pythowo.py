@@ -2164,8 +2164,8 @@ class Interpreter:
 
 global_symbol_table = SymbolTable()
 global_symbol_table.set("nwull", Number.null)
-global_symbol_table.set("fawse", Number.false)
-global_symbol_table.set("twue", Number.true)
+global_symbol_table.set("fuwuse", Number.false)
+global_symbol_table.set("towoe", Number.true)
 global_symbol_table.set("mwath_pi", Number.math_PI)
 global_symbol_table.set("pwint", BuiltInFunction.print)
 global_symbol_table.set("pwint_ret", BuiltInFunction.print_ret)
