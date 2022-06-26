@@ -131,18 +131,18 @@ KEYWORDS = [
   'OR',
   'NOT',
   'IF',
-  'ELIF',
-  'ELSE',
+  'EWIF',
+  'EWSE',
   'FOR',
   'TO',
-  'STEP',
+  'STWEP',
   'WHILE',
   'FWUNCTION',
-  'THEN',
+  'THWEN',
   'END',
-  'RETURN',
+  'WETURN',
   'CONTINUE',
-  'BREAK',
+  'BWEAK',
 ]
 
 class Token:
@@ -619,7 +619,7 @@ class Parser:
     res = ParseResult()
     pos_start = self.current_tok.pos_start.copy()
 
-    if self.current_tok.matches(TT_KEYWORD, 'RETURN'):
+    if self.current_tok.matches(TT_KEYWORD, 'WETURN'):
       res.register_advancement()
       self.advance()
 
@@ -633,7 +633,7 @@ class Parser:
       self.advance()
       return res.success(ContinueNode(pos_start, self.current_tok.pos_start.copy()))
       
-    if self.current_tok.matches(TT_KEYWORD, 'BREAK'):
+    if self.current_tok.matches(TT_KEYWORD, 'BWEAK'):
       res.register_advancement()
       self.advance()
       return res.success(BreakNode(pos_start, self.current_tok.pos_start.copy()))
@@ -642,7 +642,7 @@ class Parser:
     if res.error:
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        "Expected 'RETURN', 'CONTINUE', 'BREAK', 'VAR', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
+        "Expected 'WETURN', 'CONTINUE', 'BWEAK', 'VAR', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
       ))
     return res.success(expr)
 
@@ -887,13 +887,13 @@ class Parser:
     return res.success(IfNode(cases, else_case))
 
   def if_expr_b(self):
-    return self.if_expr_cases('ELIF')
+    return self.if_expr_cases('EWIF')
     
   def if_expr_c(self):
     res = ParseResult()
     else_case = None
 
-    if self.current_tok.matches(TT_KEYWORD, 'ELSE'):
+    if self.current_tok.matches(TT_KEYWORD, 'EWSE'):
       res.register_advancement()
       self.advance()
 
@@ -924,7 +924,7 @@ class Parser:
     res = ParseResult()
     cases, else_case = [], None
 
-    if self.current_tok.matches(TT_KEYWORD, 'ELIF'):
+    if self.current_tok.matches(TT_KEYWORD, 'EWIF'):
       all_cases = res.register(self.if_expr_b())
       if res.error: return res
       cases, else_case = all_cases
@@ -951,10 +951,10 @@ class Parser:
     condition = res.register(self.expr())
     if res.error: return res
 
-    if not self.current_tok.matches(TT_KEYWORD, 'THEN'):
+    if not self.current_tok.matches(TT_KEYWORD, 'THWEN'):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        f"Expected 'THEN'"
+        f"Expected 'THWEN'"
       ))
 
     res.register_advancement()
@@ -1034,7 +1034,7 @@ class Parser:
     end_value = res.register(self.expr())
     if res.error: return res
 
-    if self.current_tok.matches(TT_KEYWORD, 'STEP'):
+    if self.current_tok.matches(TT_KEYWORD, 'STWEP'):
       res.register_advancement()
       self.advance()
 
@@ -1043,10 +1043,10 @@ class Parser:
     else:
       step_value = None
 
-    if not self.current_tok.matches(TT_KEYWORD, 'THEN'):
+    if not self.current_tok.matches(TT_KEYWORD, 'THWEN'):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        f"Expected 'THEN'"
+        f"Expected 'THWEN'"
       ))
 
     res.register_advancement()
@@ -1090,10 +1090,10 @@ class Parser:
     condition = res.register(self.expr())
     if res.error: return res
 
-    if not self.current_tok.matches(TT_KEYWORD, 'THEN'):
+    if not self.current_tok.matches(TT_KEYWORD, 'THWEN'):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        f"Expected 'THEN'"
+        f"Expected 'THWEN'"
       ))
 
     res.register_advancement()
