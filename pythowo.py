@@ -126,7 +126,7 @@ TT_NEWLINE		= 'NEWLINE'
 TT_EOF				= 'EOF'
 
 KEYWORDS = [
-  'VAR',
+  'pwease', # var
   'AND',
   'OR',
   'NOT',
@@ -642,14 +642,14 @@ class Parser:
     if res.error:
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        "Expected 'WETURN', 'CONTINUE', 'BWEAK', 'VAR', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
+        "Expected 'WETURN', 'CONTINUE', 'BWEAK', 'pwease', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
       ))
     return res.success(expr)
 
   def expr(self):
     res = ParseResult()
 
-    if self.current_tok.matches(TT_KEYWORD, 'VAR'):
+    if self.current_tok.matches(TT_KEYWORD, 'pwease'):
       res.register_advancement()
       self.advance()
 
@@ -680,7 +680,7 @@ class Parser:
     if res.error:
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        "Expected 'VAR', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
+        "Expected 'pwease', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
       ))
 
     return res.success(node)
@@ -747,7 +747,7 @@ class Parser:
         if res.error:
           return res.failure(InvalidSyntaxError(
             self.current_tok.pos_start, self.current_tok.pos_end,
-            "Expected ')', 'VAR', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
+            "Expected ')', 'pwease', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
           ))
 
         while self.current_tok.type == TT_COMMA:
@@ -854,7 +854,7 @@ class Parser:
       if res.error:
         return res.failure(InvalidSyntaxError(
           self.current_tok.pos_start, self.current_tok.pos_end,
-          "Expected ']', 'VAR', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
+          "Expected ']', 'pwease', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
         ))
 
       while self.current_tok.type == TT_COMMA:
