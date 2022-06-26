@@ -31,7 +31,7 @@ Hewwo Wowrld
 <h2 align="center">Documentation</h2>
 
 <h3 align="center">General</h3>
-<p align="center"><code>python shwell.py</code> opens the pythOwO shell. Running <code>rwun("test.pyowo")</code> from the shell executes code from the file <code>text.pyowo</code>.</p>
+<p align="center"><code>python shwell.py</code> opens the pythOwO shell. Running <code>rwun("test.pyowo")</code> from the shell executes code from the file <code>test.pyowo</code>.</p>
 
 <h3 align="center">Variables</h3>
 <p align="center">Variables can be declared using the keyword <code>pwease</code>.</p>
