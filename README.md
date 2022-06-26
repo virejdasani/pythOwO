@@ -3,26 +3,26 @@
 ![](https://raw.githubusercontent.com/virejdasani/pythOwO/main/aswets/imwages/pythowo-banner.png)
 
 <p align="center">
-  <b>pythOwO is a programming language written in Python. UwU.</b>
+  <b>pythOwO is an uwu programming language written in Python. UwU.</b>
 </p>
 
 <br>
 
-<h2 align="center">Usage</h2>
+<h2 align="center">Uwusage</h2>
 
-<h4 align="left">Create a new file - <code>test.pyowo</code></h4>
+<h4 align="left">Cruwueate a nuwu file - <code>test.pyowo</code></h4>
 
 ```py
 pwint("Hewwo Wowrld")
 ```
 
-<h4 align="left">Run</h4>
+<h4 align="left">Ruwun</h4>
 
 ```py
 rwun("test.pyowo")
 ```
 
-<h4 align="left">Output</h4>
+<h4 align="left">Ouwutput</h4>
 
 ```
 Hewwo Wowrld
@@ -31,10 +31,10 @@ Hewwo Wowrld
 <h2 align="center">Documentation</h2>
 
 <h3 align="center">General</h3>
-<p align="center"><code>python shwell.py</code> opens the pythOwO shell. Running <code>rwun("test.pyowo")</code> from the shell executes code from the file <code>text.pyowo</code>.</p>
+<p align="center"><code>python shwell.py</code> opens the pythOwO shell. Running <code>rwun("test.pyowo")</code> from the shell execuwutes code from the kawaii file <code>text.pyowo</code>.</p>
 
 <h3 align="center">Variables</h3>
-<p align="center">Variables can be declared using the keyword <code>pwease</code>.</p>
+<p align="center">Variables can be decluwuared using the keyword <code>pwease</code>.</p>
 
 ```py
 pwease baka = 100
@@ -49,7 +49,7 @@ pwint(baka)
 pwint(chan)
 ```
 
-<h4 align="left">Output</h4>
+<h4 align="left">Ouwutpuwut</h4>
 
 ```
 500
@@ -82,7 +82,7 @@ FOR i = 0 TO 5 THWEN
 END
 ```
 
-<h4 align="left">Output</h4>
+<h4 align="left">Ouwutpuwut</h4>
 
 ```
 UwU
@@ -100,7 +100,7 @@ FWUNCTION owofy(pwefix) -> pwefix + "OwO"
 pwint(owofy("This is pyth"))
 ```
 
-<h4 align="left">Output</h4>
+<h4 align="left">Ouwutpuwut</h4>
 
 ```
 This is pythOwO
