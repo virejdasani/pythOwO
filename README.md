@@ -4,7 +4,7 @@
 
 </p>
 <p align="center">
-  <b>pythOwO is a programming language written in Python.</b>
+  <b>pythOwO is a programming language written in Python. UwU.</b>
 </p>
 <br>
 
