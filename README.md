@@ -2,10 +2,10 @@
 
 ![](https://raw.githubusercontent.com/virejdasani/pythOwO/main/aswets/imwages/pythowo-banner.png)
 
-</p>
 <p align="center">
   <b>pythOwO is a programming language written in Python. UwU.</b>
 </p>
+
 <br>
 
 <h2 align="center">Usage</h2>
