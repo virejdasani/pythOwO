@@ -1,4 +1,4 @@
-# code stolen shamelessly from: https://github.com/davidcallanan/py-myopl-code
+# cowode stowlen shamewesswy fwom: https://github.com/davidcallanan/py-myopl-code
 
 #######################################
 # IMPOWORTS
@@ -126,7 +126,7 @@ TT_NEWLINE		= 'NEWLINE'
 TT_EOF				= 'EOF'
 
 KEYWORDS = [
-  'pwease', # var
+  'pwease', # vawar
   'AND',
   'OR',
   'NOT',
@@ -2184,17 +2184,17 @@ global_symbol_table.set("lwen", BuiltInFunction.len)
 global_symbol_table.set("rwun", BuiltInFunction.run)
 
 def run(fn, text):
-  # Generate tokens
+  # Genewate towokens
   lexer = Lexer(fn, text)
   tokens, error = lexer.make_tokens()
   if error: return None, error
   
-  # Generate AST
+  # Genewate AST
   parser = Parser(tokens)
   ast = parser.parse()
   if ast.error: return None, ast.error
 
-  # Run program
+  # Ruwun pwogram
   interpreter = Interpreter()
   context = Context('<program>')
   context.symbol_table = global_symbol_table
