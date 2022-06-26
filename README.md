@@ -1,6 +1,6 @@
 # pythOwO
 ```py
-pwint("OwO")
+(｡･ω･｡)ﾉ♡ > pwint("OwO")
 ```
 
 ![](https://raw.githubusercontent.com/virejdasani/pythOwO/main/aswets/imwages/pythowo-logo.png)
