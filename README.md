@@ -64,7 +64,7 @@ pwint(chan)
 ```
 
 <h3 align="center">Conditionals</h3>
-<p align="center">IF《condition》THWEN 《expression》EWIF《condition》THEN《expression》</p>
+<p align="center">IF《condition》THWEN《expression》EWIF《condition》THWEN《expression》</p>
 
 ```py
 pwease awoo = 501
