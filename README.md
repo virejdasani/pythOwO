@@ -109,6 +109,12 @@ This is pythOwO
 <h2 align="center">Contributing</h2>
 <p align="center">All contributions are welcome, just make a pull request!</p>
 
+Unit tests are available through the unittest module. New test files must start with `test*.py` to be detected.
+
+```sh
+python -m unittest
+```
+
 
 > Pythowo logo [credit](https://www.reddit.com/r/ProgrammerHumor/comments/vkkyyv/say_hello_to_pythowo_make_sure_to_treat_her_well/)
 
