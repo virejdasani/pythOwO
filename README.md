@@ -26,13 +26,13 @@ pwint("Hewwo Wowrld")
 rwun("test.pyowo")
 ```
 
-<h4 align="left">Ouwutput</h4>
+<h4 align="left">Ouwutpuwut</h4>
 
 ```
 Hewwo Wowrld
 ```
 
-<h2 align="center">Documentation</h2>
+<h2 align="center">Docuwumentation</h2>
 
 <h3 align="center">General</h3>
 <p align="center"><code>python shwell.py</code> opens the pythOwO shell. Running <code>rwun("test.pyowo")</code> from the shell execuwutes code from the file <code>text.pyowo</code>.</p>
@@ -72,7 +72,7 @@ IF awoo == 502 THWEN pwease chan = "awoo is 502!" EWIF awoo == 501 THWEN pwease 
 pwint(chan)
 ```
 
-<h4 align="left">Output</h4>
+<h4 align="left">Ouwutpuwut</h4>
 
 ```
 awoo is 501!
