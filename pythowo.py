@@ -1,7 +1,7 @@
-# code stolen shamelessly from: https://github.com/davidcallanan/py-myopl-code
+# cowode stowlen shamewesswy fwom: https://github.com/davidcallanan/py-myopl-code
 
 #######################################
-# IMPORTS
+# IMPOWORTS
 #######################################
 
 from stwings_with_awwows import *
@@ -11,7 +11,7 @@ import os
 import math
 
 #######################################
-# CONSTANTS
+# CONSTAWANTS
 #######################################
 
 DIGITS = '0123456789'
@@ -19,7 +19,7 @@ LETTERS = string.ascii_letters
 LETTERS_DIGITS = LETTERS + DIGITS
 
 #######################################
-# ERRORS
+# ERROWORS
 #######################################
 
 class Error:
@@ -71,7 +71,7 @@ class RTError(Error):
     return 'Traceback (most recent call last):\n' + result
 
 #######################################
-# POSITION
+# POWOSITION
 #######################################
 
 class Position:
@@ -96,7 +96,7 @@ class Position:
     return Position(self.idx, self.ln, self.col, self.fn, self.ftxt)
 
 #######################################
-# TOKENS
+# TOWOKENS
 #######################################
 
 TT_INT				= 'INT'
@@ -126,7 +126,7 @@ TT_NEWLINE		= 'NEWLINE'
 TT_EOF				= 'EOF'
 
 KEYWORDS = [
-  'pwease', # var
+  'pwease', # vawar
   'AND',
   'OR',
   'NOT',
@@ -363,7 +363,7 @@ class Lexer:
     self.advance()
 
 #######################################
-# NODES
+# NOWODES
 #######################################
 
 class NumberNode:
@@ -506,7 +506,7 @@ class BreakNode:
     self.pos_end = pos_end
 
 #######################################
-# PARSE RESULT
+# PAWARSE RESUWULT
 #######################################
 
 class ParseResult:
@@ -543,7 +543,7 @@ class ParseResult:
     return self
 
 #######################################
-# PARSER
+# PAWARSE
 #######################################
 
 class Parser:
@@ -1252,7 +1252,7 @@ class Parser:
     return res.success(left)
 
 #######################################
-# RUNTIME RESULT
+# RUWUNTIME RESUWULT
 #######################################
 
 class RTResult:
@@ -1308,7 +1308,7 @@ class RTResult:
     )
 
 #######################################
-# VALUES
+# VALUWUES
 #######################################
 
 class Value:
@@ -1873,7 +1873,7 @@ BuiltInFunction.run					= BuiltInFunction("run")
 
 
 #######################################
-# CONTEXT
+# CONTEWEXT
 #######################################
 
 class Context:
@@ -1884,7 +1884,7 @@ class Context:
     self.symbol_table = None
 
 #######################################
-# SYMBOL TABLE
+# SYMBUWL TABWLE
 #######################################
 
 class SymbolTable:
@@ -1905,7 +1905,7 @@ class SymbolTable:
     del self.symbols[name]
 
 #######################################
-# INTERPRETER
+# INTWURPREWETER
 #######################################
 
 class Interpreter:
@@ -2159,7 +2159,7 @@ class Interpreter:
     return RTResult().success_break()
 
 #######################################
-# RUN
+# RUWUN
 #######################################
 
 global_symbol_table = SymbolTable()
@@ -2184,17 +2184,17 @@ global_symbol_table.set("lwen", BuiltInFunction.len)
 global_symbol_table.set("rwun", BuiltInFunction.run)
 
 def run(fn, text):
-  # Generate tokens
+  # Genewate towokens
   lexer = Lexer(fn, text)
   tokens, error = lexer.make_tokens()
   if error: return None, error
   
-  # Generate AST
+  # Genewate AST
   parser = Parser(tokens)
   ast = parser.parse()
   if ast.error: return None, ast.error
 
-  # Run program
+  # Ruwun pwogram
   interpreter = Interpreter()
   context = Context('<program>')
   context.symbol_table = global_symbol_table
