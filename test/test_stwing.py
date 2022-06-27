@@ -1,7 +1,7 @@
 import unittest
 import pythowo
 
-class TestStringMethods(unittest.TestCase):
+class TestStringOperators(unittest.TestCase):
   def test_lt_gt(self):
     value, err = pythowo.run('<test>', '"b" < "a"')
     result = value.elements[0].value
