@@ -22,8 +22,15 @@ pwint("Hewwo Wowrld")
 
 <h4 align="left">Ruwun</h4>
 
-```py
-rwun("test.pyowo")
+Either run from the interpreter directly:
+```sh
+python pythowo.py test.pyowo
+```
+
+Or run in an interactive shell:
+```sh
+python shwell.py
+> rwun("test.pyowo")
 ```
 
 <h4 align="left">Ouwutpuwut</h4>
