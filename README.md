@@ -1,7 +1,7 @@
-<h1 align="center">pythOwO</h1>
+<h1 align="center"><a href="https://youtu.be/czZmkh7CY6M">pythOwO</a></h1>
 
 <p align="center">
-	<o>See how pythOwO was made <a href="https://youtu.be/czZmkh7CY6M"> (2 min video) </a></b>
+	<b>See how pythOwO was made <a href="https://youtu.be/czZmkh7CY6M"> (2 min video) </a></b>
 </p>
 
 ![](https://raw.githubusercontent.com/virejdasani/pythOwO/main/aswets/imwages/pythowo-banner.png)
