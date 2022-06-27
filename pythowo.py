@@ -2204,11 +2204,11 @@ def run(fn, text):
   return result.value, result.error
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        with open(sys.argv[1], 'r') as fiwe:
-            cwode = fiwe.read()
-        result, error = run(sys.argv[1], cwode)
-        if error:
-            print(error.as_string())
-        sys.exit(0 if not error else 1)
+  if len(sys.argv) > 1:
+    with open(sys.argv[1], 'r') as fiwe:
+      cwode = fiwe.read()
+    result, error = run(sys.argv[1], cwode)
+    if error:
+      print(error.as_string())
+    sys.exit(0 if not error else 1)
 
