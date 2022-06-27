@@ -37,19 +37,19 @@ class Error:
 
 class IllegalCharError(Error):
   def __init__(self, pos_start, pos_end, details):
-    super().__init__(pos_start, pos_end, 'owo, whats this? Illegal Character? Oh nwo! ', details)
+    super().__init__(pos_start, pos_end, 'Owo, whats this? Iwwegaw Chawacter? Oh nwo! ', details)
 
 class ExpectedCharError(Error):
   def __init__(self, pos_start, pos_end, details):
-    super().__init__(pos_start, pos_end, 'owo, whats this? Expected Character? Oh nwo! ', details)
+    super().__init__(pos_start, pos_end, 'Owo, whats this? Expected Chawacter? Oh nwo! ', details)
 
 class InvalidSyntaxError(Error):
   def __init__(self, pos_start, pos_end, details=''):
-    super().__init__(pos_start, pos_end, 'owo, whats this? Invalid Syntax? Oh nwo! ', details)
+    super().__init__(pos_start, pos_end, 'Owo, whats this? Invawid Syntax? Oh nwo! ', details)
 
 class RTError(Error):
   def __init__(self, pos_start, pos_end, details, context):
-    super().__init__(pos_start, pos_end, 'owo, whats this? Runtime Error? Oh nwo! ', details)
+    super().__init__(pos_start, pos_end, 'Owo, whats this? Ruwntime Error? Oh nwo! ', details)
     self.context = context
 
   def as_string(self):
@@ -1167,7 +1167,7 @@ class Parser:
         if self.current_tok.type != TT_IDENTIFIER:
           return res.failure(InvalidSyntaxError(
             self.current_tok.pos_start, self.current_tok.pos_end,
-            f"Expected identifier"
+            f"Expected identifiew"
           ))
 
         arg_name_toks.append(self.current_tok)
@@ -1183,7 +1183,7 @@ class Parser:
       if self.current_tok.type != TT_RPAREN:
         return res.failure(InvalidSyntaxError(
           self.current_tok.pos_start, self.current_tok.pos_end,
-          f"Expected identifier or ')'"
+          f"Expected identifiew or ')'"
         ))
 
     res.register_advancement()
@@ -1371,7 +1371,7 @@ class Value:
     return RTResult().failure(self.illegal_operation())
 
   def copy(self):
-    raise Exception('No copy method defined')
+    raise Exception('No copy method defiwed')
 
   def is_true(self):
     return False
@@ -1548,7 +1548,7 @@ class List(Value):
       except:
         return None, RTError(
           other.pos_start, other.pos_end,
-          'Element at this index could not be removed from list because index is out of bounds',
+          'Elewent at this index cowuld not be retwieved fwom list becauwse index is ouwt of bouwnd',
           self.context
         )
     else:
@@ -1569,7 +1569,7 @@ class List(Value):
       except:
         return None, RTError(
           other.pos_start, other.pos_end,
-          'Element at this index could not be retrieved from list because index is out of bounds',
+          'Elewent at this index cowuld not be retwieved fwom list becauwse index is ouwt of bouwnds',
           self.context
         )
     else:
@@ -1603,14 +1603,14 @@ class BaseFunction(Value):
     if len(args) > len(arg_names):
       return res.failure(RTError(
         self.pos_start, self.pos_end,
-        f"{len(args) - len(arg_names)} too many args passed into {self}",
+        f"{len(args) - len(arg_names)} too many args passed into {self}. TwT",
         self.context
       ))
     
     if len(args) < len(arg_names):
       return res.failure(RTError(
         self.pos_start, self.pos_end,
-        f"{len(arg_names) - len(args)} too few args passed into {self}",
+        f"{len(arg_names) - len(args)} too few args passed into {self}. TwT",
         self.context
       ))
 
@@ -1679,7 +1679,7 @@ class BuiltInFunction(BaseFunction):
     return res.success(return_value)
   
   def no_visit_method(self, node, context):
-    raise Exception(f'No execute_{self.name} method defined')
+    raise Exception(f'No execuwte_{self.name} method defiwed')
 
   def copy(self):
     copy = BuiltInFunction(self.name)
@@ -1713,7 +1713,7 @@ class BuiltInFunction(BaseFunction):
         number = int(text)
         break
       except ValueError:
-        print(f"'{text}' must be an integer. Try again!")
+        print(f"'{text}' muwst be an integer. >w<")
     return RTResult().success(Number(number))
   execute_input_int.arg_names = []
 
@@ -1749,7 +1749,7 @@ class BuiltInFunction(BaseFunction):
     if not isinstance(list_, List):
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        "First argument must be list",
+        "Fiwst arguwment muwst be list",
         exec_ctx
       ))
 
@@ -1764,14 +1764,14 @@ class BuiltInFunction(BaseFunction):
     if not isinstance(list_, List):
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        "First argument must be list",
+        "Fiwst argument muwst be list",
         exec_ctx
       ))
 
     if not isinstance(index, Number):
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        "Second argument must be number",
+        "Second arguwment muwst be nuwmber",
         exec_ctx
       ))
 
@@ -1780,7 +1780,7 @@ class BuiltInFunction(BaseFunction):
     except:
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        'Element at this index could not be removed from list because index is out of bounds',
+        'Elewent at this index cowuld not be removed fwom list becauwse index is ouwt of bouwnds',
         exec_ctx
       ))
     return RTResult().success(element)
@@ -1793,14 +1793,14 @@ class BuiltInFunction(BaseFunction):
     if not isinstance(listA, List):
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        "First argument must be list",
+        "Fiwst arguwment muwst be list",
         exec_ctx
       ))
 
     if not isinstance(listB, List):
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        "Second argument must be list",
+        "Second arguwment muwst be list",
         exec_ctx
       ))
 
@@ -1814,7 +1814,7 @@ class BuiltInFunction(BaseFunction):
     if not isinstance(list_, List):
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        "Argument must be list",
+        "Arguwment muwst be list",
         exec_ctx
       ))
 
@@ -1827,7 +1827,7 @@ class BuiltInFunction(BaseFunction):
     if not isinstance(fn, String):
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        "Second argument must be string",
+        "Second arguwment muwst be stwring",
         exec_ctx
       ))
 
@@ -1839,7 +1839,7 @@ class BuiltInFunction(BaseFunction):
     except Exception as e:
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        f"Failed to load script \"{fn}\"\n" + str(e),
+        f"TwT Failed to load scwipt \"{fn}\"\n" + str(e),
         exec_ctx
       ))
 
@@ -1848,7 +1848,7 @@ class BuiltInFunction(BaseFunction):
     if error:
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        f"Failed to finish executing script \"{fn}\"\n" +
+        f"TwT Failed to finish execuwting scwipt \"{fn}\"\n" +
         error.as_string(),
         exec_ctx
       ))
@@ -1915,7 +1915,7 @@ class Interpreter:
     return method(node, context)
 
   def no_visit_method(self, node, context):
-    raise Exception(f'No visit_{type(node).__name__} method defined')
+    raise Exception(f'No visit_{type(node).__name__} method defiwed')
 
   ###################################
 
@@ -1949,7 +1949,7 @@ class Interpreter:
     if not value:
       return res.failure(RTError(
         node.pos_start, node.pos_end,
-        f"'{var_name}' is not defined",
+        f"'{var_name}' is not defiwed",
         context
       ))
 
