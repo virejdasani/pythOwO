@@ -142,7 +142,7 @@ KEYWORDS = [
   'THWEN',
   'END',
   'WETURN',
-  'CONTINUE',
+  'CONTINUWU',
   'BWEAK',
 ]
 
