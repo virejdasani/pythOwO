@@ -119,10 +119,13 @@ pwint(owofy("This is pyth"))
 This is pythOwO
 ```
 
-<h2 align="center">Contributing</h2>
-<p align="center">All contributions are welcome, just make a pull request!</p>
+<h2 align="center">Contribuwuting</h2>
+<p align="center">All contribuwutions are welcome, just make a puwull request!</p>
 
-Unit tests are available through the unittest module. New test files must start with `test*.py` to be detected.
+</br>
+
+<h2 align="center">Testing</h2>
+<p align="center">Unit tests are available through the unittest module. New test files must start with `test*.py` to be detected.</p>
 
 ```sh
 python -m unittest
