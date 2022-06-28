@@ -29,7 +29,7 @@ class Error:
     self.pos_end = pos_end
     self.error_name = error_name
     self.details = details
-  
+
   def as_string(self):
     result  = f'{self.error_name}: {self.details}\n'
     result += f'File {self.pos_start.fn}, line {self.pos_start.ln + 1}'
@@ -161,7 +161,7 @@ class Token:
 
   def matches(self, type_, value):
     return self.type == type_ and self.value == value
-  
+
   def __repr__(self):
     if self.value: return f'{self.type}:{self.value}'
     return f'{self.type}'
@@ -177,7 +177,7 @@ class Lexer:
     self.pos = Position(-1, 0, -1, fn, text)
     self.current_char = None
     self.advance()
-  
+
   def advance(self):
     self.pos.advance(self.current_char)
     self.current_char = self.text[self.pos.idx] if self.pos.idx < len(self.text) else None
@@ -285,7 +285,7 @@ class Lexer:
           string += self.current_char
       self.advance()
       escape_character = False
-    
+
     self.advance()
     return Token(TT_STRING, string, pos_start, self.pos)
 
@@ -321,7 +321,7 @@ class Lexer:
 
     self.advance()
     return None, ExpectedCharError(pos_start, self.pos, "'=' (after '!')")
-  
+
   def make_equals(self):
     tok_type = TT_EQ
     pos_start = self.pos.copy()
@@ -601,7 +601,7 @@ class Parser:
         newline_count += 1
       if newline_count == 0:
         more_statements = False
-      
+
       if not more_statements: break
       statement = res.try_register(self.statement())
       if not statement:
@@ -628,12 +628,12 @@ class Parser:
       if not expr:
         self.reverse(res.to_reverse_count)
       return res.success(ReturnNode(expr, pos_start, self.current_tok.pos_start.copy()))
-    
+
     if self.current_tok.matches(TT_KEYWORD, 'CONTINUWU'):
       res.register_advancement()
       self.advance()
       return res.success(ContinueNode(pos_start, self.current_tok.pos_start.copy()))
-      
+
     if self.current_tok.matches(TT_KEYWORD, 'BWEAK'):
       res.register_advancement()
       self.advance()
@@ -697,9 +697,9 @@ class Parser:
       node = res.register(self.comp_expr())
       if res.error: return res
       return res.success(UnaryOpNode(op_tok, node))
-    
+
     node = res.register(self.bin_op(self.arith_expr, (TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE)))
-    
+
     if res.error:
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
@@ -807,7 +807,7 @@ class Parser:
       list_expr = res.register(self.list_expr())
       if res.error: return res
       return res.success(list_expr)
-    
+
     elif tok.matches(TT_KEYWORD, 'IF'):
       if_expr = res.register(self.if_expr())
       if res.error: return res
@@ -889,7 +889,7 @@ class Parser:
 
   def if_expr_b(self):
     return self.if_expr_cases('EWIF')
-    
+
   def if_expr_c(self):
     res = ParseResult()
     else_case = None
@@ -932,7 +932,7 @@ class Parser:
     else:
       else_case = res.register(self.if_expr_c())
       if res.error: return res
-    
+
     return res.success((cases, else_case))
 
   def if_expr_cases(self, case_keyword):
@@ -1016,7 +1016,7 @@ class Parser:
         self.current_tok.pos_start, self.current_tok.pos_end,
         f"Expected '='"
       ))
-    
+
     res.register_advancement()
     self.advance()
 
@@ -1028,7 +1028,7 @@ class Parser:
         self.current_tok.pos_start, self.current_tok.pos_end,
         f"Expected 'TO'"
       ))
-    
+
     res.register_advancement()
     self.advance()
 
@@ -1070,7 +1070,7 @@ class Parser:
       self.advance()
 
       return res.success(ForNode(var_name, start_value, end_value, step_value, body, True))
-    
+
     body = res.register(self.statement())
     if res.error: return res
 
@@ -1117,7 +1117,7 @@ class Parser:
       self.advance()
 
       return res.success(WhileNode(condition, body, True))
-    
+
     body = res.register(self.statement())
     if res.error: return res
 
@@ -1151,7 +1151,7 @@ class Parser:
           self.current_tok.pos_start, self.current_tok.pos_end,
           f"Expected identifier or '('"
         ))
-    
+
     res.register_advancement()
     self.advance()
     arg_name_toks = []
@@ -1160,7 +1160,7 @@ class Parser:
       arg_name_toks.append(self.current_tok)
       res.register_advancement()
       self.advance()
-      
+
       while self.current_tok.type == TT_COMMA:
         res.register_advancement()
         self.advance()
@@ -1174,7 +1174,7 @@ class Parser:
         arg_name_toks.append(self.current_tok)
         res.register_advancement()
         self.advance()
-      
+
       if self.current_tok.type != TT_RPAREN:
         return res.failure(InvalidSyntaxError(
           self.current_tok.pos_start, self.current_tok.pos_end,
@@ -1203,7 +1203,7 @@ class Parser:
         body,
         True
       ))
-    
+
     if self.current_tok.type != TT_NEWLINE:
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
@@ -1224,7 +1224,7 @@ class Parser:
 
     res.register_advancement()
     self.advance()
-    
+
     return res.success(FuncDefNode(
       var_name_tok,
       arg_name_toks,
@@ -1237,7 +1237,7 @@ class Parser:
   def bin_op(self, func_a, ops, func_b=None):
     if func_b == None:
       func_b = func_a
-    
+
     res = ParseResult()
     left = res.register(func_a())
     if res.error: return res
@@ -1283,7 +1283,7 @@ class RTResult:
     self.reset()
     self.func_return_value = value
     return self
-  
+
   def success_continue(self):
     self.reset()
     self.loop_should_continue = True
@@ -1489,7 +1489,7 @@ class Number(Value):
 
   def __str__(self):
     return str(self.value)
-  
+
   def __repr__(self):
     return str(self.value)
 
@@ -1575,7 +1575,7 @@ class List(Value):
         )
     else:
       return None, Value.illegal_operation(self, other)
-  
+
   def copy(self):
     copy = List(self.elements)
     copy.set_pos(self.pos_start, self.pos_end)
@@ -1607,7 +1607,7 @@ class BaseFunction(Value):
         f"{len(args) - len(arg_names)} too many args passed into {self}. TwT",
         self.context
       ))
-    
+
     if len(args) < len(arg_names):
       return res.failure(RTError(
         self.pos_start, self.pos_end,
@@ -1678,7 +1678,7 @@ class BuiltInFunction(BaseFunction):
     return_value = res.register(method(exec_ctx))
     if res.should_return(): return res
     return res.success(return_value)
-  
+
   def no_visit_method(self, node, context):
     raise Exception(f'No execuwte_{self.name} method defiwed')
 
@@ -1697,11 +1697,11 @@ class BuiltInFunction(BaseFunction):
     print(str(exec_ctx.symbol_table.get('value')))
     return RTResult().success(Number.null)
   execute_print.arg_names = ['value']
-  
+
   def execute_print_ret(self, exec_ctx):
     return RTResult().success(String(str(exec_ctx.symbol_table.get('value'))))
   execute_print_ret.arg_names = ['value']
-  
+
   def execute_input(self, exec_ctx):
     text = input()
     return RTResult().success(String(text))
@@ -1719,7 +1719,7 @@ class BuiltInFunction(BaseFunction):
   execute_input_int.arg_names = []
 
   def execute_clear(self, exec_ctx):
-    os.system('cls' if os.name == 'nt' else 'cls') 
+    os.system('cls' if os.name == 'nt' else 'cls')
     return RTResult().success(Number.null)
   execute_clear.arg_names = []
 
@@ -1845,7 +1845,7 @@ class BuiltInFunction(BaseFunction):
       ))
 
     _, error = run(fn, script)
-    
+
     if error:
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
@@ -2064,17 +2064,17 @@ class Interpreter:
       condition = lambda: i < end_value.value
     else:
       condition = lambda: i > end_value.value
-    
+
     while condition():
       context.symbol_table.set(node.var_name_tok.value, Number(i))
       i += step_value.value
 
       value = res.register(self.visit(node.body_node, context))
       if res.should_return() and res.loop_should_continue == False and res.loop_should_break == False: return res
-      
+
       if res.loop_should_continue:
         continue
-      
+
       if res.loop_should_break:
         break
 
@@ -2101,7 +2101,7 @@ class Interpreter:
 
       if res.loop_should_continue:
         continue
-      
+
       if res.loop_should_break:
         break
 
@@ -2119,7 +2119,7 @@ class Interpreter:
     body_node = node.body_node
     arg_names = [arg_name.value for arg_name in node.arg_name_toks]
     func_value = Function(func_name, body_node, arg_names, node.should_auto_return).set_context(context).set_pos(node.pos_start, node.pos_end)
-    
+
     if node.var_name_tok:
       context.symbol_table.set(func_name, func_value)
 
@@ -2150,7 +2150,7 @@ class Interpreter:
       if res.should_return(): return res
     else:
       value = Number.null
-    
+
     return res.success_return(value)
 
   def visit_ContinueNode(self, node, context):
@@ -2167,7 +2167,7 @@ global_symbol_table = SymbolTable()
 global_symbol_table.set("nwull", Number.null)
 global_symbol_table.set("fawse", Number.false)
 global_symbol_table.set("twue", Number.true)
-global_symbol_table.set("mwath_pi", Number.math_PI)
+global_symbol_table.set("mwath_pwi", Number.math_PI)
 global_symbol_table.set("pwint", BuiltInFunction.print)
 global_symbol_table.set("pwint_ret", BuiltInFunction.print_ret)
 global_symbol_table.set("inpwt", BuiltInFunction.input)
@@ -2189,7 +2189,7 @@ def run(fn, text):
   lexer = Lexer(fn, text)
   tokens, error = lexer.make_tokens()
   if error: return None, error
-  
+
   # Genewate AST
   parser = Parser(tokens)
   ast = parser.parse()
