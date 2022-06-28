@@ -4,12 +4,12 @@
 # IMPOWORTS
 #######################################
 
-from stwings_with_awwows import *
-
-import string
-import os
 import math
+import os
+import string
 import sys
+
+from stwings_with_awwows import *
 
 #######################################
 # CONSTAWANTS
