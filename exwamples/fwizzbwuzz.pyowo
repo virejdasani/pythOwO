@@ -6,7 +6,7 @@ FWUNCTION call_modulowo (nn, dd) -> FOR i = 0 TO 999999 THWEN
     IF i == 0 THWEN pwease n = nn
     IF i == 0 THWEN pwease d = dd
     pwease n = modulowo(n , d)
-    IF NOT n == -1 THWEN IF out > n THWEN pwease out = n EWSE CONTINUE EWSE WETURN out
+    IF NOT n == -1 THWEN IF out > n THWEN pwease out = n EWSE CONTINUWU EWSE WETURN out
 END
 
 # FwizzBwuzz logic
