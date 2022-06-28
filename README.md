@@ -22,8 +22,15 @@ pwint("Hewwo Wowrld")
 
 <h4 align="left">Ruwun</h4>
 
-```py
-rwun("test.pyowo")
+Either run from the interpreter directly:
+```sh
+python pythowo.py test.pyowo
+```
+
+Or run in an interactive shell:
+```sh
+python shwell.py
+> rwun("test.pyowo")
 ```
 
 <h4 align="left">Ouwutpuwut</h4>
@@ -64,7 +71,7 @@ pwint(chan)
 ```
 
 <h3 align="center">Conditionals</h3>
-<p align="center">IF《condition》THWEN 《expression》EWIF《condition》THEN《expression》</p>
+<p align="center">IF《condition》THWEN《expression》EWIF《condition》THWEN《expression》</p>
 
 ```py
 pwease awoo = 501

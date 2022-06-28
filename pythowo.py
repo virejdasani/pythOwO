@@ -9,6 +9,7 @@ from stwings_with_awwows import *
 import string
 import os
 import math
+import sys
 
 #######################################
 # CONSTAWANTS
@@ -141,7 +142,7 @@ KEYWORDS = [
   'THWEN',
   'END',
   'WETURN',
-  'CONTINUE',
+  'CONTINUWU',
   'BWEAK',
 ]
 
@@ -628,7 +629,7 @@ class Parser:
         self.reverse(res.to_reverse_count)
       return res.success(ReturnNode(expr, pos_start, self.current_tok.pos_start.copy()))
     
-    if self.current_tok.matches(TT_KEYWORD, 'CONTINUE'):
+    if self.current_tok.matches(TT_KEYWORD, 'CONTINUWU'):
       res.register_advancement()
       self.advance()
       return res.success(ContinueNode(pos_start, self.current_tok.pos_start.copy()))
@@ -642,7 +643,7 @@ class Parser:
     if res.error:
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        "Expected 'WETURN', 'CONTINUE', 'BWEAK', 'pwease', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
+        "Expected 'WETURN', 'CONTINUWU', 'BWEAK', 'pwease', 'IF', 'FOR', 'WHILE', 'FWUNCTION', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
       ))
     return res.success(expr)
 
@@ -2175,7 +2176,7 @@ global_symbol_table.set("cwear", BuiltInFunction.clear)
 global_symbol_table.set("cls", BuiltInFunction.clear)
 global_symbol_table.set("is_nwm", BuiltInFunction.is_number)
 global_symbol_table.set("is_stwr", BuiltInFunction.is_string)
-global_symbol_table.set("is_list", BuiltInFunction.is_list)
+global_symbol_table.set("is_wist", BuiltInFunction.is_list)
 global_symbol_table.set("is_fwn", BuiltInFunction.is_function)
 global_symbol_table.set("appwend", BuiltInFunction.append)
 global_symbol_table.set("pwp", BuiltInFunction.pop)
@@ -2201,3 +2202,13 @@ def run(fn, text):
   result = interpreter.visit(ast.node, context)
 
   return result.value, result.error
+
+if __name__ == "__main__":
+  if len(sys.argv) > 1:
+    with open(sys.argv[1], 'r') as fiwe:
+      cwode = fiwe.read()
+    result, error = run(sys.argv[1], cwode)
+    if error:
+      print(error.as_string())
+    sys.exit(0 if not error else 1)
+

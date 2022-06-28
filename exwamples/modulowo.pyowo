@@ -1,0 +1,18 @@
+# May not work with numbers if number - divider > 999999 (out) also numbers exceeding iteration number of 999999 (for conditional since they can't have variables in them yet)
+
+FWUNCTION modulowo(uwu , owo) -> IF NOT (uwu < owo) THWEN WETURN uwu - owo EWSE WETURN -1
+
+FOR i = 0 TO 999999 THWEN
+    IF i == 0 THWEN pwease out = 999999
+
+# Your number here
+    IF i == 0 THWEN pwease n = 22
+
+# Your divider here
+    IF i == 0 THWEN pwease d = 8
+
+    pwease n = modulowo(n , d)
+    IF NOT n == -1 THWEN IF out > n THWEN pwease out = n EWSE CONTINUE EWSE BWEAK
+END
+
+pwint (out)
