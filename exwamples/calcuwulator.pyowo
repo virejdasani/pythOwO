@@ -1,7 +1,7 @@
-# get nuwumber uan and towo
+# get nuwumber one and two
 
-pwint("Enter nuwumber uan")
-pwease namba_uan = inpwt_int()
+pwint("Enter nuwumber one")
+pwease namba_one = inpwt_int()
 pwint("Enter nuwumber towo")
 pwease namba_towo = inpwt_int()
 pwint("")
@@ -24,7 +24,7 @@ pwint("")
 pwint("dowoing mathowo...")
 
 # dowo mathowo
-IF opewation == "1" THWEN pwease soluwution =  namba_uan + namba_towo EWIF opewation == "2" THWEN pwease soluwution = namba_uan - namba_towo EWIF opewation == "3" THWEN pwease soluwution = namba_uan / namba_towo EWIF opewation == "4" THWEN pwease soluwution = namba_uan * namba_towo EWSE pwease soluwution = "Invavid inpuwut, only inpuwut a nuwumber fwom 1 to 4 pwease^^"
+IF opewation == "1" THWEN pwease soluwution =  namba_one + namba_towo EWIF opewation == "2" THWEN pwease soluwution = namba_one - namba_towo EWIF opewation == "3" THWEN pwease soluwution = namba_one / namba_towo EWIF opewation == "4" THWEN pwease soluwution = namba_one * namba_towo EWSE pwease soluwution = "Invavid inpuwut, only inpuwut a nuwumber fwom 1 to 4 pwease^^"
 
 
 # pwint sowolution
