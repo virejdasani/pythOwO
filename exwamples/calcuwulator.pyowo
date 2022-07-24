@@ -1,0 +1,33 @@
+# get nuwumber one and two
+
+pwint("Enter nuwumber one")
+pwease namba_one = inpwt_int()
+pwint("Enter nuwumber towo")
+pwease namba_towo = inpwt_int()
+pwint("")
+
+
+pwint("Pwease twell me the owopewation you want to dwo:")
+pwint("")
+
+# pwint owopewations
+pwint("1. Addition (Inpuwut '1')")
+pwint("2. Subtwaction (Inpuwut '2')")
+pwint("3. Divisiowon (Inpuwut '3')")
+pwint("4. Muwultiplicatiown (Inpuwut '4')")
+
+# get uwuser inpwut
+
+pwease opewation = inpwt()
+pwint("")
+
+pwint("dowoing mathowo...")
+
+# dowo mathowo
+IF opewation == "1" THWEN pwease soluwution =  namba_one + namba_towo EWIF opewation == "2" THWEN pwease soluwution = namba_one - namba_towo EWIF opewation == "3" THWEN pwease soluwution = namba_one / namba_towo EWIF opewation == "4" THWEN pwease soluwution = namba_one * namba_towo EWSE pwease soluwution = "Invavid inpuwut, only inpuwut a nuwumber fwom 1 to 4 pwease^^"
+
+
+# pwint sowolution
+pwint("")
+pwint("The sowolution is:")
+pwint(soluwution)
