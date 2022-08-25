@@ -50,7 +50,7 @@ class IllegalCharError(Error):
 class ExpectedCharError(Error):
     def __init__(self, pos_start, pos_end, details):
         super().__init__(
-            pos_start, pos_end, "Owo, whats this? Expected Chawacter? Oh nyo! ", details
+            pos_start, pos_end, "OwO, whats this? Expected Chawacter? Oh nyo! ", details
         )
 
 
