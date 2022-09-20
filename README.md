@@ -12,6 +12,10 @@
 
 <br>
 
+<p align="center">
+  <a href="https://github.com/hadll/PythOwO-VScode-language-support">VSCode LangUwUage support for PythOwO</a>
+</p>
+
 <h2 align="center">Uwusage</h2>
 
 <h4 align="left">Cruwueate a nuwu file - <code>test.pyowo</code></h4>
