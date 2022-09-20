@@ -10,10 +10,8 @@
   <b>pythOwO is an uwu programming language written in Python. UwU.</b>
 </p>
 
-<br>
-
 <p align="center">
-  <a href="https://github.com/hadll/PythOwO-VScode-language-support">VSCode LangUwUage support for PythOwO</a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=Haddle.pyowo">Get PythOwO LangUwUage support for VSCode</a>
 </p>
 
 <h2 align="center">Uwusage</h2>
