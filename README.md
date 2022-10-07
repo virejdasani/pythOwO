@@ -4,7 +4,7 @@
 	<b>See how pythOwO was made <a href="https://youtu.be/czZmkh7CY6M"> (2 min video) </a></b>
 </p>
 
-![](https://raw.githubusercontent.com/virejdasani/pythOwO/main/aswets/imwages/pythowo-banner.png)
+[![](https://raw.githubusercontent.com/virejdasani/pythOwO/main/aswets/imwages/pythowo-banner.png)](https://www.youtube.com/watch?v=czZmkh7CY6M)
 
 <p align="center">
   <b>pythOwO is an uwu programming language written in Python. UwU.</b>
