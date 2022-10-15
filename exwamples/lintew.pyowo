@@ -1,0 +1,6 @@
+# "A step towards a linter or formatter..."
+# Return the substitution of a given pattern for OwOfication of programs
+FWUNCTION fowmat (chaw) -> IF chaw == "u" THWEN WETURN "uwu"
+    EWSE IF chaw == "l" THWEN WETURN "w"
+    EWSE IF chaw == "r" THWEN WETURN "w"
+END
