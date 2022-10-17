@@ -1,0 +1,6 @@
+# Truth Machine
+# If the input is true (a 1), then print true forever
+# If the input is false (a 0), then print false once
+pwease twuth = inpwt_int()
+IF twuth THWEN WHILE twue THWEN pwint(twue)
+IF NOT twuth THWEN pwint(fawse)
