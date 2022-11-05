@@ -239,16 +239,12 @@ class Lexer:
             elif self.current_char == "-":
                 tokens.append(self.make_minus_or_arrow())
             elif self.current_char == "*":
-                tokens.append(Token(TT_MUL, pos_start=self.pos))
-                self.advance()
+                tokens.append(self.make_mul_or_pow())
             elif self.current_char == "/":
                 tokens.append(Token(TT_DIV, pos_start=self.pos))
                 self.advance()
             elif self.current_char == "%":
                 tokens.append(Token(TT_MOD, pos_start=self.pos))
-                self.advance()
-            elif self.current_char == "^":
-                tokens.append(Token(TT_POW, pos_start=self.pos))
                 self.advance()
             elif self.current_char == "&":
                 tokens.append(Token(TT_BAND, pos_start=self.pos))
@@ -256,7 +252,7 @@ class Lexer:
             elif self.current_char == "|":
                 tokens.append(Token(TT_BOR, pos_start=self.pos))
                 self.advance()
-            elif self.current_char == "$":
+            elif self.current_char == "^":
                 tokens.append(Token(TT_BXOR, pos_start=self.pos))
                 self.advance()
             elif self.current_char == "~":
@@ -360,6 +356,14 @@ class Lexer:
             tok_type = TT_ARROW
 
         return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
+
+    def make_mul_or_pow(self):
+        self.advance()
+        if self.current_char == "*":
+            self.advance()
+            return Token(TT_POW, pos_start=self.pos)
+        
+        return Token(TT_MUL, pos_start=self.pos)
 
     def make_not_equals(self):
         pos_start = self.pos.copy()
