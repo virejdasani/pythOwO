@@ -132,7 +132,12 @@ TT_PLUS = "PLUS"
 TT_MINUS = "MINUS"
 TT_MUL = "MUL"
 TT_DIV = "DIV"
+TT_MOD = "MOD"
 TT_POW = "POW"
+TT_BAND = "BAND"
+TT_BOR = "BOR"
+TT_BXOR = "BXOR"
+TT_BNOT = "BNOT"
 TT_EQ = "EQ"
 TT_LPAREN = "LPAREN"
 TT_RPAREN = "RPAREN"
@@ -239,8 +244,23 @@ class Lexer:
             elif self.current_char == "/":
                 tokens.append(Token(TT_DIV, pos_start=self.pos))
                 self.advance()
+            elif self.current_char == "%":
+                tokens.append(Token(TT_MOD, pos_start=self.pos))
+                self.advance()
             elif self.current_char == "^":
                 tokens.append(Token(TT_POW, pos_start=self.pos))
+                self.advance()
+            elif self.current_char == "&":
+                tokens.append(Token(TT_BAND, pos_start=self.pos))
+                self.advance()
+            elif self.current_char == "|":
+                tokens.append(Token(TT_BOR, pos_start=self.pos))
+                self.advance()
+            elif self.current_char == "$":
+                tokens.append(Token(TT_BXOR, pos_start=self.pos))
+                self.advance()
+            elif self.current_char == "~":
+                tokens.append(Token(TT_BNOT, pos_start=self.pos))
                 self.advance()
             elif self.current_char == "(":
                 tokens.append(Token(TT_LPAREN, pos_start=self.pos))
@@ -781,7 +801,7 @@ class Parser:
             return res.success(UnaryOpNode(op_tok, node))
 
         node = res.register(
-            self.bin_op(self.arith_expr, (TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE))
+            self.bin_op(self.bitwise_or, (TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE))
         )
 
         if res.error:
@@ -795,17 +815,26 @@ class Parser:
 
         return res.success(node)
 
+    def bitwise_or(self):
+        return self.bin_op(self.bitwise_xor, (TT_BOR,))
+
+    def bitwise_xor(self):
+        return self.bin_op(self.bitwise_and, (TT_BXOR,))
+
+    def bitwise_and(self):
+        return self.bin_op(self.arith_expr, (TT_BAND,))
+
     def arith_expr(self):
         return self.bin_op(self.term, (TT_PLUS, TT_MINUS))
 
     def term(self):
-        return self.bin_op(self.factor, (TT_MUL, TT_DIV))
+        return self.bin_op(self.factor, (TT_MUL, TT_DIV, TT_MOD))
 
     def factor(self):
         res = ParseResult()
         tok = self.current_tok
 
-        if tok.type in (TT_PLUS, TT_MINUS):
+        if tok.type in (TT_PLUS, TT_MINUS, TT_BNOT):
             res.register_advancement()
             self.advance()
             factor = res.register(self.factor())
@@ -1537,8 +1566,26 @@ class Value:
     def dived_by(self, other):
         return None, self.illegal_operation(other)
 
+    def moded_by(self, other):
+        return None, self.illegal_operation(other)
+
     def powed_by(self, other):
         return None, self.illegal_operation(other)
+
+    def bitwise_anded_by(self, other):
+        return None, self.illegal_operation(other)
+
+    def bitwise_anded_by(self, other):
+        return None, self.illegal_operation(other)
+
+    def bitwise_orded_by(self, other):
+        return None, self.illegal_operation(other)
+
+    def bitwise_xored_by(self, other):
+        return None, self.illegal_operation(other)
+
+    def bitwise_noted(self):
+        return None, self.illegal_operation()
 
     def get_comparison_eq(self, other):
         return None, self.illegal_operation(other)
@@ -1616,11 +1663,64 @@ class Number(Value):
         else:
             return None, Value.illegal_operation(self, other)
 
+    def moded_by(self, other):
+        if isinstance(other, Number):
+            if other.value == 0:
+                return None, RTError(
+                    other.pos_start, other.pos_end, "Division by zero", self.context
+                )
+
+            return Number(self.value % other.value).set_context(self.context), None
+        else:
+            return None, Value.illegal_operation(self, other)
+
     def powed_by(self, other):
         if isinstance(other, Number):
             return Number(self.value**other.value).set_context(self.context), None
         else:
             return None, Value.illegal_operation(self, other)
+
+    def bitwise_anded_by(self, other):
+        if isinstance(other, Number):
+            return (
+                Number(self.value & other.value).set_context(self.context),
+                None,
+            )
+        else:
+            return None, Value.illegal_operation(self, other)
+
+    def bitwise_anded_by(self, other):
+        if isinstance(other, Number):
+            return (
+                Number(self.value & other.value).set_context(self.context),
+                None,
+            )
+        else:
+            return None, Value.illegal_operation(self, other)
+
+    def bitwise_orded_by(self, other):
+        if isinstance(other, Number):
+            return (
+                Number(self.value | other.value).set_context(self.context),
+                None,
+            )
+        else:
+            return None, Value.illegal_operation(self, other)
+
+    def bitwise_xored_by(self, other):
+        if isinstance(other, Number):
+            return (
+                Number(self.value ^ other.value).set_context(self.context),
+                None,
+            )
+        else:
+            return None, Value.illegal_operation(self, other)
+
+    def bitwise_notted(self):
+        return (
+            Number(~self.value).set_context(self.context),
+            None,
+        )
 
     def get_comparison_eq(self, other):
         if isinstance(other, Number):
@@ -1673,7 +1773,7 @@ class Number(Value):
     def anded_by(self, other):
         if isinstance(other, Number):
             return (
-                Number(int(self.value and other.value)).set_context(self.context),
+                Number(self.value and other.value).set_context(self.context),
                 None,
             )
         else:
@@ -1682,14 +1782,14 @@ class Number(Value):
     def ored_by(self, other):
         if isinstance(other, Number):
             return (
-                Number(int(self.value or other.value)).set_context(self.context),
+                Number(self.value or other.value).set_context(self.context),
                 None,
             )
         else:
             return None, Value.illegal_operation(self, other)
 
     def notted(self):
-        return Number(1 if self.value == 0 else 0).set_context(self.context), None
+        return Number(int(not self.value)).set_context(self.context), None
 
     def copy(self):
         copy = Number(self.value)
@@ -1979,8 +2079,237 @@ class BuiltInFunction(BaseFunction):
 
     #####################################
 
+    def execute_number(self, exec_ctx):
+        value = exec_ctx.symbol_table.get("value")
+
+        if not (
+            isinstance(value, Number) or
+            isinstance(value, String)
+        ):
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    "Arguwment muwst be nuwmber or a stwring. >w<",
+                    exec_ctx,
+                )
+            )
+            
+        try:
+            number = float(value.value)
+            if isinstance(value, String) and number.is_integer():
+                number = int(number)
+
+        except ValueError:
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    f"{value!r} can't be convewted to a nuwmber. >w<",
+                    exec_ctx,
+                )
+            )
+        return RTResult().success(Number(number))
+
+    execute_number.arg_names = ["value"]
+
+    def execute_int(self, exec_ctx):
+        value = exec_ctx.symbol_table.get("value")
+
+        if not (
+            isinstance(value, Number) or
+            isinstance(value, String)
+        ):
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    "Arguwment muwst be nuwmber or a stwring. >w<",
+                    exec_ctx,
+                )
+            )
+            
+        try:
+            number = int(value.value)
+        except ValueError:
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    f"{value!r} can't be convewted to an integer. >w<",
+                    exec_ctx,
+                )
+            )
+        return RTResult().success(Number(number))
+
+    execute_int.arg_names = ["value"]
+
+    def execute_float(self, exec_ctx):
+        value = exec_ctx.symbol_table.get("value")
+
+        if not (
+            isinstance(value, Number) or
+            isinstance(value, String)
+        ):
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    "Arguwment muwst be nuwmber or a stwring. >w<",
+                    exec_ctx,
+                )
+            )
+            
+        try:
+            number = float(value.value)
+        except ValueError:
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    f"{value!r} can't be convewted to an fwoat. >w<",
+                    exec_ctx,
+                )
+            )
+        return RTResult().success(Number(number))
+
+    execute_float.arg_names = ["value"]
+
+    def execute_floor(self, exec_ctx):
+        value = exec_ctx.symbol_table.get("value")
+
+        if not isinstance(value, Number):
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    "Arguwment muwst be nuwmber. >w<",
+                    exec_ctx,
+                )
+            )
+
+        try:
+            result = math.floor(value.value)
+        except OverflowError:
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    f"{value!r} Cannyot convewt fwoat infinyity to integew. >w<",
+                    exec_ctx,
+                )
+            )
+        return RTResult().success(Number(result))
+
+    execute_floor.arg_names = ["value"]
+
+    def execute_ceil(self, exec_ctx):
+        value = exec_ctx.symbol_table.get("value")
+
+        if not isinstance(value, Number):
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    "Arguwment muwst be nuwmber. >w<",
+                    exec_ctx,
+                )
+            )
+
+        try:
+            result = math.ceil(value.value)
+        except OverflowError:
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    f"{value!r} Cannyot convewt fwoat infinyity to integew. >w<",
+                    exec_ctx,
+                )
+            )
+        return RTResult().success(Number(result))
+
+    execute_ceil.arg_names = ["value"]
+
+    def execute_round(self, exec_ctx):
+        value = exec_ctx.symbol_table.get("value")
+
+        if not isinstance(value, Number):
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    "Arguwment muwst be nuwmber. >w<",
+                    exec_ctx,
+                )
+            )
+
+        try:
+            result = round(value.value)
+        except OverflowError:
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    f"{value!r} Cannyot convewt fwoat infinyity to integew. >w<",
+                    exec_ctx,
+                )
+            )
+        return RTResult().success(Number(result))
+
+    execute_round.arg_names = ["value"]
+
+    def execute_log(self, exec_ctx):
+        value = exec_ctx.symbol_table.get("value")
+        base = exec_ctx.symbol_table.get("base")
+
+        if not isinstance(value, Number):
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    "First arguwment muwst be nuwmber. >w<",
+                    exec_ctx,
+                )
+            )
+
+        if not isinstance(base, Number):
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    "Base muwst be nuwmber. >w<",
+                    exec_ctx,
+                )
+            )
+
+        try:
+            result = math.log(value.value, base.value)
+        except ValueError:
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    "Math domain ewwow. >w<",
+                    exec_ctx,
+                )
+            )
+        except ZeroDivisionError:
+            return RTResult().failure(
+                RTError(
+                    self.pos_start,
+                    self.pos_end,
+                    "Nuwmber division by zewo ewwow. >w<",
+                    exec_ctx,
+                )
+            )
+
+        return RTResult().success(Number(result))
+
+    execute_log.arg_names = ["value", "base"]
+
     def execute_print(self, exec_ctx):
-        print(str(exec_ctx.symbol_table.get("value")))
+        print(exec_ctx.symbol_table.get("value"))
         return RTResult().success(Number.null)
 
     execute_print.arg_names = ["value"]
@@ -2003,7 +2332,7 @@ class BuiltInFunction(BaseFunction):
                 number = int(text)
                 break
             except ValueError:
-                print(f"'{text}' muwst be an integer. >w<")
+                print(f"{text!r} muwst be an integer. >w<")
         return RTResult().success(Number(number))
 
     execute_input_int.arg_names = []
@@ -2185,6 +2514,14 @@ class BuiltInFunction(BaseFunction):
     execute_run.arg_names = ["fn"]
 
 
+BuiltInFunction.number = BuiltInFunction("number")
+BuiltInFunction.int = BuiltInFunction("int")
+BuiltInFunction.float = BuiltInFunction("float")
+BuiltInFunction.floor = BuiltInFunction("floor")
+BuiltInFunction.ceil = BuiltInFunction("ceil")
+BuiltInFunction.round = BuiltInFunction("round")
+BuiltInFunction.log = BuiltInFunction("log")
+
 BuiltInFunction.print = BuiltInFunction("print")
 BuiltInFunction.print_ret = BuiltInFunction("print_ret")
 BuiltInFunction.input = BuiltInFunction("input")
@@ -2325,8 +2662,18 @@ class Interpreter:
             result, error = left.multed_by(right)
         elif node.op_tok.type == TT_DIV:
             result, error = left.dived_by(right)
+        elif node.op_tok.type == TT_MOD:
+            result, error = left.moded_by(right)
         elif node.op_tok.type == TT_POW:
             result, error = left.powed_by(right)
+        elif node.op_tok.type == TT_BAND:
+            result, error = left.bitwise_anded_by(right)
+        elif node.op_tok.type == TT_BOR:
+            result, error = left.bitwise_ored_by(right)
+        elif node.op_tok.type == TT_BXOR:
+            result, error = left.bitwise_xored_by(right)
+        elif node.op_tok.type == TT_BNOT:
+            result, error = left.bitwise_notted(right)
         elif node.op_tok.type == TT_EE:
             result, error = left.get_comparison_eq(right)
         elif node.op_tok.type == TT_NE:
@@ -2359,6 +2706,8 @@ class Interpreter:
 
         if node.op_tok.type == TT_MINUS:
             number, error = number.multed_by(Number(-1))
+        elif node.op_tok.type == TT_BNOT:
+            number, error = number.bitwise_notted()
         elif node.op_tok.matches(TT_KEYWORD, "NOT"):
             number, error = number.notted()
 
@@ -2549,6 +2898,15 @@ global_symbol_table.set("nwull", Number.null)
 global_symbol_table.set("fawse", Number.false)
 global_symbol_table.set("twue", Number.true)
 global_symbol_table.set("mwath_pwi", Number.math_PI)
+
+global_symbol_table.set("nuwmber", BuiltInFunction.number)
+global_symbol_table.set("int", BuiltInFunction.int)
+global_symbol_table.set("fwoat", BuiltInFunction.float)
+global_symbol_table.set("fwoor", BuiltInFunction.floor)
+global_symbol_table.set("ceiw", BuiltInFunction.ceil)
+global_symbol_table.set("rwound", BuiltInFunction.round)
+global_symbol_table.set("lwog", BuiltInFunction.log)
+
 global_symbol_table.set("pwint", BuiltInFunction.print)
 global_symbol_table.set("pwint_ret", BuiltInFunction.print_ret)
 global_symbol_table.set("inpwt", BuiltInFunction.input)
@@ -2595,4 +2953,4 @@ if __name__ == "__main__":
         result, error = run(sys.argv[1], cwode)
         if error:
             print(error.as_string())
-        sys.exit(0 if not error else 1)
+        sys.exit(int(bool(error)))
