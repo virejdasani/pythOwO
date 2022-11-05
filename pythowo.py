@@ -138,6 +138,8 @@ TT_BAND = "BAND"
 TT_BOR = "BOR"
 TT_BXOR = "BXOR"
 TT_BNOT = "BNOT"
+TT_RSHIFT = "RSHIFT"
+TT_LSHIFT = "LSHIFT"
 TT_EQ = "EQ"
 TT_LPAREN = "LPAREN"
 TT_RPAREN = "RPAREN"
@@ -278,9 +280,9 @@ class Lexer:
             elif self.current_char == "=":
                 tokens.append(self.make_equals())
             elif self.current_char == "<":
-                tokens.append(self.make_less_than())
+                tokens.append(self.make_less_than_or_lshift())
             elif self.current_char == ">":
-                tokens.append(self.make_greater_than())
+                tokens.append(self.make_greater_than_or_rshift())
             elif self.current_char == ",":
                 tokens.append(Token(TT_COMMA, pos_start=self.pos))
                 self.advance()
@@ -358,12 +360,15 @@ class Lexer:
         return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
     def make_mul_or_pow(self):
+        tok_type = TT_POW
+        pos_start = self.pos.copy()
         self.advance()
+
         if self.current_char == "*":
             self.advance()
-            return Token(TT_POW, pos_start=self.pos)
+            tok_type = TT_POW
         
-        return Token(TT_MUL, pos_start=self.pos)
+        return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
     def make_not_equals(self):
         pos_start = self.pos.copy()
@@ -387,7 +392,7 @@ class Lexer:
 
         return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
-    def make_less_than(self):
+    def make_less_than_or_lshift(self):
         tok_type = TT_LT
         pos_start = self.pos.copy()
         self.advance()
@@ -396,9 +401,13 @@ class Lexer:
             self.advance()
             tok_type = TT_LTE
 
+        elif self.current_char == "<":
+            self.advance()
+            tok_type = TT_LSHIFT
+
         return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
-    def make_greater_than(self):
+    def make_greater_than_or_rshift(self):
         tok_type = TT_GT
         pos_start = self.pos.copy()
         self.advance()
@@ -406,6 +415,10 @@ class Lexer:
         if self.current_char == "=":
             self.advance()
             tok_type = TT_GTE
+        
+        elif self.current_char == ">":
+            self.advance()
+            tok_type = TT_RSHIFT
 
         return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
@@ -826,7 +839,10 @@ class Parser:
         return self.bin_op(self.bitwise_and, (TT_BXOR,))
 
     def bitwise_and(self):
-        return self.bin_op(self.arith_expr, (TT_BAND,))
+        return self.bin_op(self.shift_expr, (TT_BAND,))
+
+    def shift_expr(self):
+        return self.bin_op(self.arith_expr, (TT_RSHIFT, TT_LSHIFT))
 
     def arith_expr(self):
         return self.bin_op(self.term, (TT_PLUS, TT_MINUS))
@@ -1588,6 +1604,12 @@ class Value:
     def bitwise_noted(self):
         return None, self.illegal_operation()
 
+    def rshifted_by(self, other):
+        return None, self.illegal_operation(other)
+
+    def lshifted_by(self, other):
+        return None, self.illegal_operation(other)
+
     def get_comparison_eq(self, other):
         return None, self.illegal_operation(other)
 
@@ -1713,6 +1735,28 @@ class Number(Value):
             Number(~self.value).set_context(self.context),
             None,
         )
+
+    def rshifted_by(self, other):
+        if (isinstance(other, Number) and
+            isinstance(other.value, int) and 
+            isinstance(self.value,int)):
+            return (
+                Number(self.value >> other.value).set_context(self.context),
+                None,
+            )
+        else:
+            return None, Value.illegal_operation(self, other)
+
+    def lshifted_by(self, other):
+        if (isinstance(other, Number) and
+            isinstance(other.value, int) and 
+            isinstance(self.value,int)):
+            return (
+                Number(self.value << other.value).set_context(self.context),
+                None,
+            )
+        else:
+            return None, Value.illegal_operation(self, other)
 
     def get_comparison_eq(self, other):
         if isinstance(other, Number):
@@ -2666,6 +2710,10 @@ class Interpreter:
             result, error = left.bitwise_xored_by(right)
         elif node.op_tok.type == TT_BNOT:
             result, error = left.bitwise_notted(right)
+        elif node.op_tok.type == TT_RSHIFT:
+            result, error = left.rshifted_by(right)
+        elif node.op_tok.type == TT_LSHIFT:
+            result, error = left.lshifted_by(right)
         elif node.op_tok.type == TT_EE:
             result, error = left.get_comparison_eq(right)
         elif node.op_tok.type == TT_NE:
