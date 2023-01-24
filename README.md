@@ -13,6 +13,13 @@
 <p align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=Haddle.pyowo">Get PythOwO LangUwUage support for VSCode</a>
 </p>
+<p align="center">
+  <a href="https://pypi.org/project/PythOwO/">PythOwO on PyPi</a>
+</p>
+
+```bash
+pip install PythOwO
+```
 
 <h2 align="center">Uwusage</h2>
 
