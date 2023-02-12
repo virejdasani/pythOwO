@@ -1,8 +1,12 @@
 #!/usr/bin/python3
+import os
 import pythowo
 
 while True:
     text = input("(｡･ω･｡)ﾉ♡ > ")
+    if text.strip() == "cwear":
+        os.system('clear' if os.name == 'posix' else 'cls')
+        continue
     if text.strip() == "":
         continue
     result, error = pythowo.run("<stdin>", text)
