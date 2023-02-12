@@ -129,7 +129,7 @@ This is pythOwO
 ```
 
 <h3 align="center">Clear</h3>
-You can clear the shell with the CWEAR command
+You can clear the shell with the cwear command
 
 ```
 (｡･ω･｡)ﾉ♡ > cwear
