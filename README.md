@@ -14,7 +14,7 @@
   <a href="https://marketplace.visualstudio.com/items?itemName=Haddle.pyowo">Get PythOwO LangUwUage support for VSCode</a>
 </p>
 <p align="center">
-  <a href="https://pypi.org/project/PythOwO/">PythOwO on PyPi</a>
+  <a href="https://pypi.org/project/PythOwO/">PythOwO on PyPi</a><br>
   Thwanks for helping with this @Tulip-0333 UwU.
 </p>
 
