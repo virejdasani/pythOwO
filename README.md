@@ -40,7 +40,7 @@ python pythowo.py test.pyowo
 Or run in an interactive shell:
 ```sh
 python shwell.py
-> rwun("test.pyowo")
+(｡･ω･｡)ﾉ♡> rwun("test.pyowo")
 ```
 
 <h4 align="left">Ouwutpuwut</h4>
