@@ -7,7 +7,7 @@
 [![](https://raw.githubusercontent.com/virejdasani/pythOwO/main/aswets/imwages/pythowo-banner.png)](https://www.youtube.com/watch?v=czZmkh7CY6M)
 
 <p align="center">
-  <b>pythOwO is an uwu programming language written in Python. UwU.</b>
+  <b>pythOwO is an uwu programming language written in Python UwU.</b>
 </p>
 
 <p align="center">
@@ -15,6 +15,7 @@
 </p>
 <p align="center">
   <a href="https://pypi.org/project/PythOwO/">PythOwO on PyPi</a>
+  Thwanks for helping with this @Tulip-0333 UwU.
 </p>
 
 ```bash
@@ -60,13 +61,13 @@ Hewwo Wowrld
 
 ```py
 pwease baka = 100
-pwease awoo = "two"
+pwease tehe = "two"
 pwease chan = 25
 pwease baka = baka + 1
-pwease awoo = 500
+pwease tehe = 500
 pwease chan = chan * 2
 
-pwint(awoo)
+pwint(tehe)
 pwint(baka)
 pwint(chan)
 ```
@@ -83,9 +84,10 @@ pwint(chan)
 <p align="center">IF《condition》THWEN《expression》EWIF《condition》THWEN《expression》</p>
 
 ```py
-pwease awoo = 501
+pwease tehe = 501
 
-IF awoo == 502 THWEN pwease chan = "awoo is 502!" EWIF awoo == 501 THWEN pwease chan = "awoo is 501!" EWSE pwease chan = "awoo is 500!"
+IF tehe == 502 THWEN pwease chan = "tehe is 502!" EWIF tehe == 501 THWEN pwease chan = "
+is 501!" EWSE pwease chan = "tehe is 500!"
 
 pwint(chan)
 ```
@@ -93,7 +95,7 @@ pwint(chan)
 <h4 align="left">Ouwutpuwut</h4>
 
 ```
-awoo is 501!
+tehe is 501!
 ```
 
 <h3 align="center">Loops</h3>
