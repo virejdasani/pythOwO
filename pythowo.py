@@ -43,28 +43,28 @@ class Error:
 class IllegalCharError(Error):
     def __init__(self, pos_start, pos_end, details):
         super().__init__(
-            pos_start, pos_end, "OwO, whats this? Iwwegaw Chawacter? Oh nyo! ", details
+            pos_start, pos_end, "OwO, what's this? Iwwegaw Chawacter? Oh nyo! ", details
         )
 
 
 class ExpectedCharError(Error):
     def __init__(self, pos_start, pos_end, details):
         super().__init__(
-            pos_start, pos_end, "OwO, whats this? Expected Chawacter? Oh nyo! ", details
+            pos_start, pos_end, "OwO, what's this? Expected Chawacter? Oh nyo! ", details
         )
 
 
 class InvalidSyntaxError(Error):
     def __init__(self, pos_start, pos_end, details=""):
         super().__init__(
-            pos_start, pos_end, "OwO, whats this? Invawid Syntax? Oh nyo! ", details
+            pos_start, pos_end, "OwO, what's this? Invawid Syntax? Oh nyo! ", details
         )
 
 
 class RTError(Error):
     def __init__(self, pos_start, pos_end, details, context):
         super().__init__(
-            pos_start, pos_end, "OwO, whats this? Ruwntime Error? Oh nyo! ", details
+            pos_start, pos_end, "OwO, what's this? Ruwntime Error? Oh nyo! ", details
         )
         self.context = context
 
