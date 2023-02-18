@@ -129,6 +129,14 @@ pwint(owofy("This is pyth"))
 This is pythOwO
 ```
 
+<h3 align="center">Clear</h3>
+You can clear the shell with the cwear command
+
+```
+(｡･ω･｡)ﾉ♡ > cwear
+```
+
+
 <h2 align="center">Contribuwuting</h2>
 <p align="center">All contribuwutions are welcome, just make a puwull request!</p>
 
