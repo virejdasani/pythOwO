@@ -1,0 +1,16 @@
+# Gwet A Nuwumbwer
+pwint("Enter thew nuwumbwer: ")
+pwease nuwu = inpwt_int()
+
+# Fwunction to Cawculate Fibwonacchi Nuwumbwer OwO
+FWUNCTION fib_owo(nuwu) ->
+    IF nuwu <= 0 THWEN
+        WETURN 0
+    EWIF nuwu == 1 THWEN
+        WETURN 1
+    EWSE
+        WETURN fib_owo(nuwu-1) + fib_owo(nuwu-2)
+
+# Pwint the Answew OwO
+pwease nwani = fib_owo(nuwu)
+pwint("The fibwonacchi nuwumbwer is: ", nwani, " OwO")

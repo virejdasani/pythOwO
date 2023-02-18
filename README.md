@@ -14,7 +14,7 @@
   <a href="https://marketplace.visualstudio.com/items?itemName=Haddle.pyowo">Get PythOwO LangUwUage support for VSCode</a>
 </p>
 <p align="center">
-  <a href="https://pypi.org/project/PythOwO/">PythOwO on PyPi</a>
+  <a href="https://pypi.org/project/PythOwO/">PythOwO on PyPi</a><br>
 </p>
 
 ```bash
@@ -39,7 +39,7 @@ python pythowo.py test.pyowo
 Or run in an interactive shell:
 ```sh
 python shwell.py
-> rwun("test.pyowo")
+(｡･ω･｡)ﾉ♡> rwun("test.pyowo")
 ```
 
 <h4 align="left">Ouwutpuwut</h4>
@@ -60,13 +60,13 @@ Hewwo Wowrld
 
 ```py
 pwease baka = 100
-pwease awoo = "two"
+pwease tehe = "two"
 pwease chan = 25
 pwease baka = baka + 1
-pwease awoo = 500
+pwease tehe = 500
 pwease chan = chan * 2
 
-pwint(awoo)
+pwint(tehe)
 pwint(baka)
 pwint(chan)
 ```
@@ -83,9 +83,10 @@ pwint(chan)
 <p align="center">IF《condition》THWEN《expression》EWIF《condition》THWEN《expression》</p>
 
 ```py
-pwease awoo = 501
+pwease tehe = 501
 
-IF awoo == 502 THWEN pwease chan = "awoo is 502!" EWIF awoo == 501 THWEN pwease chan = "awoo is 501!" EWSE pwease chan = "awoo is 500!"
+IF tehe == 502 THWEN pwease chan = "tehe is 502!" EWIF tehe == 501 THWEN pwease chan = "
+is 501!" EWSE pwease chan = "tehe is 500!"
 
 pwint(chan)
 ```
@@ -93,7 +94,7 @@ pwint(chan)
 <h4 align="left">Ouwutpuwut</h4>
 
 ```
-awoo is 501!
+tehe is 501!
 ```
 
 <h3 align="center">Loops</h3>
@@ -142,6 +143,7 @@ python -m unittest
 
 
 > Pythowo logo [credit](https://www.reddit.com/r/ProgrammerHumor/comments/vkkyyv/say_hello_to_pythowo_make_sure_to_treat_her_well/)
-
+> Thank youwu @Haddle for making VSCode language support for PythOwO
+> Thank youwu @Tulip-0333 for helping with putting PythOwO up on PyPi
 
 <h5 align="left">uwu</h5>
