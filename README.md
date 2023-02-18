@@ -7,7 +7,7 @@
 [![](https://raw.githubusercontent.com/virejdasani/pythOwO/main/aswets/imwages/pythowo-banner.png)](https://www.youtube.com/watch?v=czZmkh7CY6M)
 
 <p align="center">
-  <b>pythOwO is an uwu programming language written in Python UwU.</b>
+  <b>pythOwO is an uwu programming language written in Python. UwU.</b>
 </p>
 
 <p align="center">
