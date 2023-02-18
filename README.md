@@ -15,7 +15,6 @@
 </p>
 <p align="center">
   <a href="https://pypi.org/project/PythOwO/">PythOwO on PyPi</a><br>
-  Thwanks for helping with this @Tulip-0333 UwU.
 </p>
 
 ```bash
@@ -144,6 +143,7 @@ python -m unittest
 
 
 > Pythowo logo [credit](https://www.reddit.com/r/ProgrammerHumor/comments/vkkyyv/say_hello_to_pythowo_make_sure_to_treat_her_well/)
-
+> Thank youwu @Haddle for making VSCode language support for PythOwO
+> Thank youwu @Tulip-0333 for helping with putting PythOwO up on PyPi
 
 <h5 align="left">uwu</h5>
