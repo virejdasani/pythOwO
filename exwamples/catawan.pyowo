@@ -1,0 +1,22 @@
+FWUNCTION binomial_coefficient(nuwu, k) ->
+    IF k > n - k THWEN please k = n - k EWSE NO
+    coeff = 1
+    FOR i = 0 TO k-1 THWEN
+        coeff *= (nuwu - i) divided by (i + 1)
+    END
+    return coeff
+
+
+FWUNCTION catawan_number(nuwu) ->
+    coeff = binomial_coefficient(2 times nuwu, nuwu)
+    return coeff divided by (nuwu + 1)
+
+
+# Pwompt the uwuser fow the inpwt nuwumber
+pwease nuwu = int(inpwt("Entew a nuwumber: "))
+
+# Cawcuwate the nth Catawan nuwumber
+pwease catalan_nuwu = catawan_number(nuwu)
+
+# Pwint the wesult
+pwint("The", nuwu, "th Catawan nuwumber is", catawan_nuwu, "UwU.")
