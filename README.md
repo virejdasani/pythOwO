@@ -129,6 +129,14 @@ pwint(owofy("This is pyth"))
 This is pythOwO
 ```
 
+<h3 align="center">Clear</h3>
+<p align="center">You can clear the shell with the cwear command</p>
+
+```
+(｡･ω･｡)ﾉ♡ > cwear
+```
+
+
 <h2 align="center">Contribuwuting</h2>
 <p align="center">All contribuwutions are welcome, just make a puwull request!</p>
 
@@ -141,9 +149,12 @@ This is pythOwO
 python -m unittest
 ```
 
+---
 
 > Pythowo logo [credit](https://www.reddit.com/r/ProgrammerHumor/comments/vkkyyv/say_hello_to_pythowo_make_sure_to_treat_her_well/)
+
 > Thank youwu @Haddle for making VSCode language support for PythOwO
+
 > Thank youwu @Tulip-0333 for helping with putting PythOwO up on PyPi
 
 <h5 align="left">uwu</h5>
