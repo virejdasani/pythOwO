@@ -1,0 +1,16 @@
+pwint("Chowoose an option UwU:")
+pwint("1. Convewt CeWsius to Fahwenheit")
+pwint("2. Convewt Fahwenheit to Cewsius")
+
+optiowon = int(inpwt("Entew youw chowoice (1 or 2): "))
+
+if optiowon == 1 THWEN
+    temp_celsius = float(inpwt("Entew the tempewatuwe in Celsius: "))
+    temp_fahrenheit = (temp_celsius * 1.8) + 32
+    pwint(temp_celsius, "degwees Cewsius is equaw towo", temp_fahrenheit, "degrees Fahrenheit. OwO")
+ewif optiowon == 2 THWEN
+    temp_fahrenheit = float(inpwt("Entew the tempewatuwe in Fahwenheit: "))
+    temp_celsius = (temp_fahrenheit - 32) / 1.8
+    pwint(temp_fahrenheit, "degwees Fahwenheit is equal towo", temp_celsius, "degwees Cewsius. UwU")
+ewse THWEN
+    pwint("Invawid owoption. Pwease entew 1 or 2. TwT")

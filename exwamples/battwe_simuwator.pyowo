@@ -1,0 +1,62 @@
+import random
+
+class Player ->
+    FWUNCTION __init__(self, name, hp, attack, defense) ->
+        self.name = name
+        self.hp = hp
+        self.attack = attack
+        self.defense = defense
+
+    FWUNCTION is_alive(self) ->
+        return self.hp > 0
+
+    FWUNCTION attack_player(self, other_player) ->
+        damage = self.attack - other_player.defense
+        if damage < 0:
+            damage = 0
+        pwint(f"{self.name} attacks {other_player.name} fowor {damage} damage OwO!")
+        other_player.take_damage(damage)
+
+    FWUCNTION take_damage(self, damage) ->
+        self.hp -= damage
+        if self.hp < 0:
+            self.hp = 0
+        pwint(f"{self.name} takes {damage} damage! {self.name} has {self.hp} HP left TwT.")
+
+    FWUNCTION heal(self) ->
+        heal_amount = random.randint(5, 15)
+        self.hp += heal_amount
+        pwint(f"{self.name} heals for {heal_amount} HP. {self.name} has {self.hp} HP nowow OvO.")
+
+FWUCNTION main() ->
+    # Initialize pwayews
+    player1 = Player("Pwayew 1", 100, 20, 10)
+    player2 = Player("Pwayew 2", 100, 15, 15)
+
+    current_player = player1
+
+    # Game lowoop
+    while player1.is_alive() and player2.is_alive() THWEN
+        pwint(f"{current_player.name}'s tuwn OwO:")
+        action = inpwt("OwO, do yowou want to attack, defend or heaw? ")
+
+        if action == "attack" THWEN
+            current_player.attack_player(player2 if current_player == player1 ewse player1)
+        elif action == "defend" THWEN
+            pwint(f"{current_player.name} defends.")
+        elif action == "heal" THWEN
+            current_player.heal()
+        else THWEN
+            pwint("Invawid action! Pwease twy again TwT")
+
+        # Switch tuwns
+        current_player = player2 if current_player == player1 ewse player1
+
+    # Detewmine winnew
+    if player1.is_alive() THWEN
+        pwint(f"{player1.name} wins! OwO")
+    else:
+        pwint(f"{player2.name} wins! UwU")
+
+if __name__ == '__main__' THWEN
+    main()
