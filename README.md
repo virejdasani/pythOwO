@@ -152,6 +152,7 @@ python -m unittest
 ---
 
 > Pythowo logo [credit](https://www.reddit.com/r/ProgrammerHumor/comments/vkkyyv/say_hello_to_pythowo_make_sure_to_treat_her_well/)
+> Pythowo [reddit post](https://www.reddit.com/r/ProgrammerHumor/comments/vl6qf8/i_actually_made_pythowo_link_in_comments/)
 
 > Thank youwu @Haddle for making VSCode language support for PythOwO
 
