@@ -91,17 +91,12 @@ is 501!" EWSE pwease chan = "tehe is 500!"
 pwint(chan)
 ```
 
-<h4 align="left">Ouwutpuwut</h4>
-
-```
-tehe is 501!
-```
 
 <h3 align="center">Loops</h3>
 
 ```py
 FOR i = 0 TO 5 THWEN
-	pwint("UwU")
+    pwint("UwU")
 END
 ```
 
@@ -135,12 +130,24 @@ This is pythOwO
 ```
 (｡･ω･｡)ﾉ♡ > cwear
 ```
+<h2 align="center">Devewowopment setup</h2>
+<p align="left">Recommended local setup fow hacking on pythOwO:</p>
 
+```sh
+# 1) Create & activate a viwtuaw enviwonment (optional but wecommended)
+python3 -m venv .venv
+source .venv/bin/activate
 
-<h2 align="center">Contribuwuting</h2>
-<p align="center">All contribuwutions are welcome, just make a puwull request!</p>
+# 2) Wun fwom souwce
+python pythowo.py exwamples/hewwo.pyowo
 
-</br>
+# Ow stawt the intewactive shwell
+python shwell.py
+(｡･ω･｡)ﾉ♡> rwun("exwamples/hewwo.pyowo")
+
+# 3) Wun tests
+python -m unittest
+```
 
 <h2 align="center">Testing</h2>
 <p align="center">Unit tests are available through the unittest module. New test files must start with `test*.py` to be detected.</p>
@@ -148,15 +155,9 @@ This is pythOwO
 ```sh
 python -m unittest
 ```
-
----
-
-> Pythowo logo [credit](https://www.reddit.com/r/ProgrammerHumor/comments/vkkyyv/say_hello_to_pythowo_make_sure_to_treat_her_well/)
-
-> Pythowo [reddit post](https://www.reddit.com/r/ProgrammerHumor/comments/vl6qf8/i_actually_made_pythowo_link_in_comments/)
+> PythOwO [reddit post](https://www.reddit.com/r/ProgrammerHumor/comments/vl6qf8/i_actually_made_pythowo_link_in_comments/)
 
 > Thank youwu @Haddle for making VSCode language support for PythOwO
 
 > Thank youwu @Tulip-0333 for helping with putting PythOwO up on PyPi
-
 <h5 align="left">uwu</h5>
